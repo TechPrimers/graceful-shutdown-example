@@ -9,6 +9,8 @@ import javax.annotation.PreDestroy;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 
+import static java.lang.Thread.*;
+
 @SpringBootApplication
 public class GracefulShutdownExampleApplication {
 
@@ -31,7 +33,7 @@ public class GracefulShutdownExampleApplication {
 
 		private void task() {
 			try {
-				Thread.sleep(5000);
+				sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -46,7 +48,7 @@ public class GracefulShutdownExampleApplication {
 		//Verify if the threads have completed their tasks and then proceed with shutdown
 		while (executor.getActiveCount() > 0) {
 			try {
-				Thread.sleep(5000);
+				sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
